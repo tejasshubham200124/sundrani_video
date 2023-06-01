@@ -1,13 +1,305 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+  margin:0;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  /* background: rgba(255, 255, 255, 0.3); */
+}
+.ant-layout{
+  min-height: 100vh;
+}
+main{
+  overflow-y: scroll;
+  height:80vh;
+
+}
+main::-webkit-scrollbar {
+  width: 0px;
+  
+}
+.ant-layout-sider{
+  flex : 0 0 250px;
+  max-width: 250px;
+  min-width: 20px;
+  width:250px
+}
+.ant-layout-collapsed{
+  flex : 0 0 8px;
+  max-width: 8px;
+  min-width: 80px;
+  width:80px
+}
+.logo{
+  background-color: #ffd333;
+  height:44px
+ 
+}
+.text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 6px;
+  color:white;
+  font-size: 23px;
+}
+
+.title{
+  font-size: 17px !important; 
+}
+.bhakti p{
+  font-size: 13px;
+  color: red;
+  padding-top: 5px;
+}
+.paginationBttns {
+  width: 100%;
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin: 2% 0;
+  padding-right: 180px;
+}
+.paginationBttns a {
+  border: 1px solid transparent;
+  float: left;
+  margin-left: 2px;
+  padding: 6px 12px;
+  position: relative;
+  text-decoration: none;
+  color: #333;
+}
+.paginationActive a{
+  background-color: #d9d9d9;
+  cursor: default;
+}
+
+
+.button-17 {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: block;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 0;
+  color: #000;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.slick-prev {
+  left: 0;
+}
+
+.slick-next {
+  right: 0;
+}
+
+.slider-container{
+  padding-top: 2rem;
+}
+.ant-menu-dark .ant-menu-item-selected{
+  color:#4285f4 ;
+  
+}
+.ant-menu-title-content{
+  color:white;
+}
+.ant-menu-item-icon-selected{
+  color:white
+}
+.icon{
+  display: flex;
+  gap:6px
+}
+.icon2{
+  display:flex;
+  gap:15px
+}
+.tabular{
+  padding-top: 0.5rem;
+}
+.music{
+  font-size: 25px;
+  font-weight: 600;
+}
+.linkcss{
+  color:black;
+  text-decoration: none;
+}
+.linkcss:hover{
+  color:#4285f4 ;
+}
+.second-half{
+  padding-top: 2rem;
+}
+.img{
+  width:20%;
+}
+.content{
+  height:130px
+}
+.img img{
+  width:150px;
+  height:130px
+}
+.main-content{
+  width:100%;
+  
+}
+.main-content p{
+  font-size: 22px;
+  font-weight: 400;
+}
+.edit{
+  width:10%;
+}
+.ant-menu .ant-menu-item .ant-menu-item-icon {
+  color: #fff;
+}
+.video{
+  height:500;
+  width:500px
+}
+.login{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5rem;
+}
+.main-body.card{
+  height: 400px;
+  width:600px
+}
+.login-content{
+  display: flex;
+  flex-direction: row;
+  gap:5rem
+}
+.sundranilogo{
+  padding-top: 2rem;
+}
+.side-content{
+  padding-top: 2rem;
+}
+
+.additional-options {
+  display: none;
+}
+
+
+.show-fields {
+  display: block;
+}
+
+.hide-fields {
+  display: none;
+}
+.rounded-t-5 {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+@media (max-width: 550px) {
+  .rounded-tr-lg-0 {
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0rem;
+  }
 }
