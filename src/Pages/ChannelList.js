@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import { FiEdit } from 'react-icons/fi'
+import { MdDelete } from 'react-icons/md'
+import { Link } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
 import Slider from "react-slick";
-import 'slick-carousel/slick/slick.js';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { FiEdit } from 'react-icons/fi'
-import { MdDelete } from 'react-icons/md'
-import { Link } from 'react-router-dom';
-import ChannelChild from '../Child/ChannelChild';
 import axios from 'axios';
 import swal from 'sweetalert';
 import AWS from 'aws-sdk';
 import config from '../Pages/awsconfig';
-import { ToastContainer, toast } from 'react-toastify';
+import 'slick-carousel/slick/slick.js';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import 'react-toastify/dist/ReactToastify.css';
+
+const ChannelChild = lazy(() => import('../Child/ChannelChild'));
 
 const ChannelList = () => {
 
@@ -24,44 +26,9 @@ const ChannelList = () => {
   const [channels, setChannels] = useState([])
   const [show, setShow] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [channelName, setChannelName] = useState([])
+  const [channelName, setChannelName] = useState('')
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  var settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
 
   useEffect(() => {
     axios.post('https://apidev.sundranifilms.co.in/admin/get_all_channel')
@@ -88,12 +55,16 @@ const ChannelList = () => {
     });
   };
 
+
   function getFileNameFromURL(url) {
     const parts = url.split("/");
     const fileName = parts[parts.length - 1];
     return fileName;
   }
+
   const bucketUrl = `https://${config.bucketName}.s3.${config.region}.amazonaws.com/`;
+
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
@@ -187,6 +158,40 @@ const ChannelList = () => {
       }
     });
   };
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
   return (
     <div>
@@ -251,7 +256,7 @@ const ChannelList = () => {
                     to={`/admin/Channel_Info/${channel.id}`}
                     className='linkcss'
                   >
-                    <Card.Title className='title d-flex flex-row justify-content-center align-items-center'>
+                    <Card.Title className='title2 d-flex flex-row justify-content-center align-items-center'>
                       {channel.channel_name}
                     </Card.Title>
                   </Link>
@@ -269,17 +274,19 @@ const ChannelList = () => {
           ))}
         </Slider>
       </div>
-      {modalData && (
-        <ChannelChild
-          show={modalShow}
-          channel={modalData}
-          onHide={() => {
-            setModalShow(false);
-            setModalData(null);
-          }}
-          onUpdateChannel={handleChannelUpdate}
-        />
-      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        {modalData && (
+          <ChannelChild
+            show={modalShow}
+            channel={modalData} 
+            onHide={() => {
+              setModalShow(false);
+              setModalData(null);
+            }}
+            onUpdateChannel={handleChannelUpdate}
+          />
+        )}
+      </Suspense>
     </div>
   )
 }

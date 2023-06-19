@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
     MenuFoldOutlined,
@@ -14,12 +14,15 @@ const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const navigate = useNavigate()
+
     const {
         token: { colorBgContainer },
     } = theme.useToken();
 
-
+    const navigate = useNavigate();
+    const handleGoBack = () => {
+        navigate(-1);
+    }
     return (
         <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -58,12 +61,16 @@ const MainLayout = () => {
 
             <Layout className="site-layout">
                 <Header style={{ padding: 0, background: colorBgContainer }}>
-                    {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                        className: 'trigger',
-                        onClick: () => setCollapsed(!collapsed),
-                    })}
+                    <div className="header-content">
+                        <div className="trigger-container">
+                            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                                className: 'trigger',
+                                onClick: () => setCollapsed(!collapsed),
+                            })}
+                        </div>
+                        <button onClick={handleGoBack} className="back-button">Go Back</button>
+                    </div>
                 </Header>
-                
                 <Content
                     style={{
                         margin: '24px 16px',

@@ -12,7 +12,7 @@ import VideoDetails from './Pages/VideoDetails';
 import UploadFile from './Pages/UploadFile';
 import ImageUpload2 from './Pages/ImageUpload2';
 import FetchApi from './Pages/FetchApi';
-// import Slider from '../Pages/Slider';
+import View from './Pages/View';
 function App() {
   return (
     <Router> 
@@ -22,12 +22,13 @@ function App() {
           <Route index element={<ChannelList />} />
           <Route path='Channel_Info/:id' element={<ChannelInfo/>} />
           <Route path='ViewBhaktiChannels' element={<ViewBhaktiChannel/>} />
-          <Route path='VideoDetails' element={<VideoDetails/>} />
+          {/* <Route path='VideoDetails' element={<VideoDetails/>} /> */}
           <Route path="userList" element={<UserList />} />
           <Route path="uploadFile" element={<UploadFile />} />
           <Route path="image2" element={<ImageUpload2 />} />
           <Route path="image3" element={<FetchApi />} />
           <Route path="logOut" element={<Logout />} />
+          <Route path="View/:category_id" element={<View />} />
          </Route> 
       </Routes>
   </Router>

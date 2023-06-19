@@ -6,8 +6,8 @@ import config from '../Pages/awsconfig';
 import { toast } from 'react-toastify';
 
 const ChannelChild = (props) => {
-  const { id ,  channel: initialChannel,  onUpdateChannel  } = props
-  const [channel, setChannel] = useState(initialChannel || {});
+  
+  const { channel : initialChannel, onUpdateChannel } = props;
   const [selectedImage, setSelectedImage] = useState(null);
   const bucketUrl = `https://${config.bucketName}.s3.${config.region}.amazonaws.com/`;
   function getFileNameFromURL(url) {
@@ -16,6 +16,7 @@ const ChannelChild = (props) => {
     return fileName;
   }
 
+  const [channel, setChannel] = useState(initialChannel || {});
   const updateState = (e) => {
     const { name, value } = e.target;
     setChannel((prevChannel) => ({
@@ -23,7 +24,6 @@ const ChannelChild = (props) => {
       [name]: value,
     }));
   };
-  
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
@@ -77,7 +77,7 @@ const ChannelChild = (props) => {
       });
   
       if (res.ok) {
-        toast.success('Channel Updated Successfully', {
+        toast.success('Channel Details Updated Successfully', {
           position: "top-right",
           autoClose: 2000, 
           hideProgressBar: false,
@@ -90,6 +90,7 @@ const ChannelChild = (props) => {
   
         setTimeout(() => {
           onUpdateChannel(updatedChannel);
+          console.log(updatedChannel)
           props.onHide();
           window.location.reload();
         }, 2000); 
@@ -123,6 +124,7 @@ const ChannelChild = (props) => {
               <label><b>Channel Name</b></label>
               <input type="text" className="form-control" name='channel_name' value={channel.channel_name}
                 onChange={updateState} />
+              
             </div>
             <div className='mt-3'>
               <label><b>Image</b></label>
