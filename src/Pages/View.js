@@ -139,6 +139,11 @@ const View = () => {
         }
     };
 
+    const openEditModal = (video) => {
+        setEditModalShow(true);
+        setModalData(video);
+    };
+
     const handleUpdateVideo = (updatedVideo) => {
         console.log(updatedVideo);
     };
@@ -161,10 +166,7 @@ const View = () => {
             });
     }, [category_id]);
 
-    const openEditModal = (video) => {
-        setEditModalShow(true);
-        setModalData(video);
-    };
+   
 
     const fetchData = async (categoryId, videoId) => {
         try {
@@ -179,37 +181,37 @@ const View = () => {
         }
     };
 
-    // const deleteChannel = (videoId) => {
-    //     swal({
-    //       title: "Are you sure?",
-    //       text: "Once deleted, you will not be able to recover this video !",
-    //       icon: "warning",
-    //       buttons: true,
-    //       dangerMode: true,
-    //     }).then(async (willDelete) => {
-    //       if (willDelete) {
-    //         try {
-    //           const response = await fetch("https://apidev.sundranifilms.co.in/admin/delete_video_id", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify({ "id": videoId }),
-    //           });
-    //           setChannels(channels.filter(video => video.id !== videoId));
-    //           const data = await response.json();
-    //           swal("Video has been deleted !", {
-    //             icon: "success",
-    //           });
-    //           setTimeout(() => {
-    //             window.location.reload();
-    //           }, 2000);
-    //         } catch (error) {
-    //           console.error(error);
-    //         }
-    //       } else {
-    //         swal("Your video  is safe!");
-    //       }
-    //     });
-    //   };
+    const deleteChannel = (videoId) => {
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, you will not be able to recover this video !",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        }).then(async (willDelete) => {
+          if (willDelete) {
+            try {
+              const response = await fetch("https://apidev.sundranifilms.co.in/admin/delete_video_id", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ "id": videoId }),
+              });
+       
+              const data = await response.json();
+              swal("Video has been deleted !", {
+                icon: "success",
+              });
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            } catch (error) {
+              console.error(error);
+            }
+          } else {
+            swal("Your video  is safe!");
+          }
+        });
+      };
 
     const handleFetchData = (categoryId, videoId) => {
         fetchData(categoryId, videoId);
@@ -326,10 +328,9 @@ const View = () => {
                                         <div className='d-flex flex-row justify-content-center align-items-center g-2 icon' style={{ paddingBottom: "5px" }}>
                                             <FiEdit className='fs-5' onClick={() => openEditModal(video)} style={{ color: 'green', cursor: 'pointer' }} />
                                             <MdDelete className='fs-4' style={{ color: 'red', cursor: 'pointer' }}
-                                            //  onClick={() => deleteChannel(video.id)}
+                                             onClick={() => deleteChannel(video.id)}
                                             />
                                         </div>
-                                        {/* <hr  className='custom-hr'/> */}
                                     </Card.Body>
                                 </div>
                             </div>

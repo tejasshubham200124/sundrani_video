@@ -6,8 +6,7 @@ import { VscUnlock } from 'react-icons/vsc';
 function App() {
   return (
     <MDBContainer fluid className='d-flex align-items-center justify-content-center vh-100'>
-      <MDBCard className='card-container'>
-        
+      <MDBCard className='card-container'>     
           <MDBCardBody>
             <ul className='background'>
               <li></li>

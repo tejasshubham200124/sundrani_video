@@ -58,7 +58,6 @@ const MainLayout = () => {
                     ]}
                 />
             </Sider>
-
             <Layout className="site-layout">
                 <Header style={{ padding: 0, background: colorBgContainer }}>
                     <div className="header-content">

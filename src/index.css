@@ -356,7 +356,7 @@ main::-webkit-scrollbar {
   transition: transform 0.3s ease;
 }
 .main-video-image {
-  margin-right: 10px; /* Adjust the margin as per your preference */
+  margin-right: 10px; 
 }
 
 .main-video-image img:hover {
@@ -406,8 +406,6 @@ main::-webkit-scrollbar {
   color: #ffffff;
   background-color: #333333;
 }
-
-
 
 .header-content {
   display: flex;
@@ -668,6 +666,10 @@ main::-webkit-scrollbar {
   color: white;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+.nav-item{
+  font-weight:600
 }
 
 
